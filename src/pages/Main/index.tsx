@@ -1,25 +1,9 @@
 import axios from "axios";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import Table from "../../components/Table";
-
-interface CSVObject {
-  [key: string]: string;
-}
-
-export interface Product {
-  code: number;
-  name: string;
-  sales_price: number;
-  new_sales_price: number;
-}
-
-export interface UpdateError {
-  message: string;
-  errors: {
-    code: number;
-    message: string;
-  }[]
-}
+import Form from "../../components/Form";
+import { CSVObject, Product, UpdateError } from "../../interfaces";
+import csvFileToArray from "../../helpers/csvFileToArray";
+import { StyledHeader, StyledMain } from "./styles";
 
 const Main = (): JSX.Element => {
   const [file, setFile] = useState<File | null>(null);
@@ -28,29 +12,19 @@ const Main = (): JSX.Element => {
   const [errors, setErrors] = useState<UpdateError | null>(null);
   const [validProducts, setValidProducts] = useState<boolean>(false)
   
+  const { VITE_API_URL } = import.meta.env;
+
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
   };
 
-  const csvFileToArray = (string: string): CSVObject[] => {
-    const [header, ...rows] = string.split("\n");
-    const csvHeader = header.split(",");
-    const newArray: CSVObject[] = rows.map((row) =>
-      row.split(",").reduce((acc, curr, index) => {
-        acc[csvHeader[index].trim()] = curr.trim();
-        return acc;
-      }, {} as CSVObject)
-    );
-
-    return newArray;
-  };
-
   const removeFile = () => {
     setFile(null);
     setErrors(null);
     setUpdateProducts([]);
+    setValidProducts(false);
 
     const fileInput = document.getElementById("file-input") as HTMLInputElement;
     if (fileInput) {
@@ -91,7 +65,7 @@ const Main = (): JSX.Element => {
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/product/validate', body);
+      const response = await axios.post(`${VITE_API_URL}/product/validate`, body);
       setUpdateProducts(response.data);
       setValidProducts(true);
     } catch (err: unknown) {
@@ -108,7 +82,7 @@ const Main = (): JSX.Element => {
     };
 
     try {
-      const response = await axios.put('http://localhost:3000/product', body);
+      const response = await axios.put(`${VITE_API_URL}/product`, body);
 
       if (response.status === 200) {
         removeFile();
@@ -123,29 +97,20 @@ const Main = (): JSX.Element => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Atualizar Produtos</h1>
-      <form id="form">
-        <input
-          type="file"
-          accept=".csv"
-          id="file-input"
-          style={{ display: "none" }}
-          onChange={handleOnChange}
-        />
-        <button onClick={(e) => handleOnSubmit(e)}>Importar Arquivo</button>
-        <div>
-          <p>{ file?.name }</p>
-          { file && <button onClick={ () => removeFile() }>X</button> }
-        </div>
-        <button onClick={(e) => handleFile(e)} disabled={ file === null }>Validar Arquivo</button>
-        <Table
-          error={ errors }
-          products={ updateProducts }
-        />
-        {validProducts && <button onClick={(e) => handleUpdateProducts(e)}>Atualizar Produtos</button> }
-      </form>
-    </div>
+    <StyledMain>
+      <StyledHeader>Atualizar Produtos</StyledHeader>
+      <Form
+        handleOnChange={ handleOnChange }
+        updateProducts={ updateProducts }
+        handleOnSubmit={ handleOnSubmit }
+        handleUpdateProducts={ handleUpdateProducts }
+        file={ file }
+        removeFile={ removeFile }
+        handleFile={ handleFile }
+        validProducts={ validProducts }
+        errors={ errors }
+      />
+    </StyledMain>
   );
 };
 
