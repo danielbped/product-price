@@ -1,38 +1,49 @@
-import { UpdateError, Product } from "../../pages/Main";
+import { useEffect, useState } from "react";
+import { ITable, Product, UpdateError } from "../../interfaces";
+import { StyledTable, StyledTableSection, StyledTableRow, StyledTableHead, StyledTableCell, SuccessMessageField, SuccessMessage, SuccessMessageObs, ErrorMessage } from "./styles";
 
-interface ITable {
-  products: Product[],
-  error?: UpdateError | null;
-}
-
-const Table = ({ products, error }: ITable): JSX.Element => {
-  const errorHeaders = ['Código', 'Erro'];
+const Table = (props: ITable): JSX.Element => {
+  const errorHeaders = ['Erro', 'Código do produto'];
   const productHeaders = ['Código', 'Nome', 'Valor', 'Novo valor'];
 
-  const items = products || error?.errors;
+  const [items, setItems] = useState<Product[] | UpdateError[]>([]);
 
-  const headers = error ? errorHeaders : productHeaders;
+  useEffect(() => {
+    if (props.error?.errors) {
+      return setItems(props.error?.errors);
+    }
+
+    return setItems(props.products);
+  }, [props.products, props.error])
+
+  const headers = props.error ? errorHeaders : productHeaders;
 
   return (
-    <div>
-      {error && <p>{ error.message  }</p>}
-      { items.length > 0 && <table>
+    <StyledTableSection>
+      {props.error && <ErrorMessage>{ props.error.message }</ErrorMessage>}
+      {!props.error && props.products.length > 0 &&
+        <SuccessMessageField>
+          <SuccessMessage>Produtos validados com sucesso!</SuccessMessage>
+          <SuccessMessageObs>Verifique os dados abaixo e finalize a atualização clicando no botão "Atualizar Produtos" acima.</SuccessMessageObs>
+        </SuccessMessageField>
+      }
+      { items.length > 0 && <StyledTable>
         <thead>
           <tr>
             { headers.map((header) => (
-              <th>{ header }</th>
+              <StyledTableHead>{ header }</StyledTableHead>
             )) }
           </tr>
         </thead>
         <tbody>
           { items?.map((error) => (
-              <tr>
-                { Object.values(error).map((item) => <td>{ item }</td>) }
-              </tr>
+              <StyledTableRow>
+                { Object.values(error).map((item) => <StyledTableCell>{ item }</StyledTableCell>) }
+              </StyledTableRow>
             ))}
         </tbody>
-      </table> }
-    </div>
+      </StyledTable> }
+    </StyledTableSection>
   )
 }
 
