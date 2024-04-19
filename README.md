@@ -46,7 +46,11 @@ Este projeto está sob licença do [MIT](https://github.com/danielbped/product-p
 
     > ⚠️ A aplicação, por definição, estará rodando na porta 5173 ⚠️
 
-- Na raiz do projeto, há um [arquivo de exemplo](https://github.com/danielbped/product-price/blob/master/public/atualizacao_preco_exemplo.csv) que pode ser utilizado para atualizar os produtos
+- Na raiz do projeto, há um [arquivo de exemplo](https://github.com/danielbped/product-price/blob/master/public/atualizacao_preco_exemplo.csv) que pode ser utilizado para atualizar os produtos.
+
+  - O arquivo deve ser um **.csv**, com duas colunas **product_code** (contendo o código do produto) e **new_price** (contendo o novo valor do produto), e deve seguir as seguintes regras de negócio:
+    - O novo valor não deve ser abaixo do preço de custo do produto.
+    - O novo valor não deve ser 10% acima ou 10% abaixo do valor atual do produto.
 
 ## .env <a name="env"></a>
 
