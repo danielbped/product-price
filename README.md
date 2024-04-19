@@ -86,4 +86,4 @@ Um arquivo com estas definições já está presente no projeto, o **.env.exampl
 
 ### Produtos atualizados com sucesso
 
-![Produtos atualizados com sucesso](./public/images/update_success.png)
+![Produtos atualizados com sucesso](./public/images/update_success.jpeg)
