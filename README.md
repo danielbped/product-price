@@ -46,6 +46,8 @@ Este projeto está sob licença do [MIT](https://github.com/danielbped/product-p
 
     > ⚠️ A aplicação, por definição, estará rodando na porta 5173 ⚠️
 
+- Na raiz do projeto, há um [arquivo de exemplo](https://github.com/danielbped/product-price/blob/master/public/atualizacao_preco_exemplo.csv) que pode ser utilizado para atualizar os produtos
+
 ## .env <a name="env"></a>
 
 Na raiz do projeto, será necessário criar um arquivo .env, com as seguintes informações:
@@ -57,3 +59,31 @@ Na raiz do projeto, será necessário criar um arquivo .env, com as seguintes in
 Um arquivo com estas definições já está presente no projeto, o **.env.example**, para que funcione corretamente, basta renomear para apenas **.env**, e alterar os dados **VITE_API_URL** de acordo com a rota em que a API esteja rodando, provavelmente será **http://localhost:3000**.
 
 ## Demonstração <a name="demo"></a>
+
+### Página inicial
+
+![Página inicial](./public/images/initial_page.png)
+
+### Arquivo adicionado para validação
+
+![Arquivo adicionado para validação](./public/images/add_file.png)
+
+### Erro ao validar o arquivo
+
+![Erro ao validar o arquivo](./public/images/validate_error.png)
+
+### Produtos inválidos
+
+![Produtos inválidos](./public/images/validate_items_error.png)
+
+### Produtos validados com sucesso
+
+![Produtos validados com sucesso](./public/images/validate_success.png)
+
+### Erro ao atualizar os produtos
+
+![Erro ao atualizar os produtos](./public/images/update_error.png)
+
+### Produtos atualizados com sucesso
+
+![Produtos atualizados com sucesso](./public/images/update_success.png)
