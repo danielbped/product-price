@@ -4,6 +4,7 @@ import Table from "../Table";
 import { IForm } from "../../interfaces";
 import { StyledFileName, StyledForm, StyledRemoveFileButton, StyledFileField } from "./style";
 import { CgTrashEmpty } from "react-icons/cg"
+import { FormButtonClassName, FormButtonName } from "../../enums";
 
 const Form = (props: IForm): JSX.Element => {
   return (
@@ -18,20 +19,20 @@ const Form = (props: IForm): JSX.Element => {
       <div>
         <Button
           onClick={(e: FormEvent<HTMLButtonElement>) => props.handleOnSubmit(e)}
-          name="Importar Arquivo"
-          className="import"
+          name={ FormButtonName.IMPORT }
+          className={ FormButtonClassName.IMPORT }
         />
         { (props.file && !props.validProducts) && <Button
           onClick={(e) => props.handleFile(e)}
           disabled={ props.file === null }
-          name="Validar Arquivo"
-          className="validate"
+          name={ FormButtonName.VALIDATE }
+          className={ FormButtonClassName.VALIDATE }
         /> }
         { (props.validProducts
           && props.file)
           && <Button
-          name="Atualizar Produtos"
-          className="update"
+          name={ FormButtonName.UPDATE }
+          className={ FormButtonName.UPDATE }
           onClick={(e) => props.handleUpdateProducts(e)}
         /> }
       </div>

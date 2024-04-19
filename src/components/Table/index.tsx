@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ITable, Product, UpdateError } from "../../interfaces";
 import { StyledTable, StyledTableSection, StyledTableRow, StyledTableHead, StyledTableCell, MessageField, SuccessMessage, MessageObs, ErrorMessage } from "./styles";
+import { FormMessage, FormMessageObs } from "../../enums";
 
 const Table = (props: ITable): JSX.Element => {
   const errorHeaders = ['Erro', 'Código do produto'];
@@ -23,12 +24,12 @@ const Table = (props: ITable): JSX.Element => {
       {props.error &&
         <MessageField>
           <ErrorMessage>{ props.error.message }</ErrorMessage>
-          <MessageObs>Verifique os erros abaixo, atualize a lista e tente novamente.</MessageObs>
+          <MessageObs>{ FormMessageObs.ERROR }</MessageObs>
       </MessageField>}
       {!props.error && props.products.length > 0 &&
         <MessageField>
-          <SuccessMessage>Produtos validados com sucesso!</SuccessMessage>
-          <MessageObs>Verifique os dados abaixo e finalize a atualização clicando no botão "Atualizar Produtos" acima.</MessageObs>
+          <SuccessMessage>{ FormMessage.SUCCESS }</SuccessMessage>
+          <MessageObs>{ FormMessageObs.SUCCESS }</MessageObs>
         </MessageField>
       }
       { items.length > 0 && <StyledTable>

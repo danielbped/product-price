@@ -1,17 +1,23 @@
 import axios from "axios";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Form from "../../components/Form";
-import { CSVObject, Product, UpdateErrorResponse } from "../../interfaces";
+import { CSVObject, IAlertModal, Product, UpdateErrorResponse } from "../../interfaces";
 import csvFileToArray from "../../helpers/csvFileToArray";
 import { StyledHeader, StyledMain } from "./styles";
+import AlertModal from "../../components/AlertModal";
+import { ModalMessage, ModalType } from "../../enums";
 
 const Main = (): JSX.Element => {
   const [file, setFile] = useState<File | null>(null);
   const [array, setArray] = useState<CSVObject[]>([]);
   const [updateProducts, setUpdateProducts] = useState<Product[]>([]);
   const [errors, setErrors] = useState<UpdateErrorResponse | null>(null);
-  const [validProducts, setValidProducts] = useState<boolean>(false)
+  const [validProducts, setValidProducts] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modal, setModal] = useState<Partial<IAlertModal> | null>(null);
   
+  const CLOSE_MODAL_TIME = 5000;
+
   const { VITE_API_URL } = import.meta.env;
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -19,6 +25,12 @@ const Main = (): JSX.Element => {
       setFile(e.target.files[0]);
     }
   };
+
+  useEffect(() => {
+    if (showModal) {
+      setTimeout(() => setShowModal(false), CLOSE_MODAL_TIME);
+    }
+  }, [showModal])
 
   const removeFile = () => {
     setFile(null);
@@ -36,6 +48,12 @@ const Main = (): JSX.Element => {
     e.preventDefault();
     document.getElementById("file-input")?.click();
   };
+
+  const handleShowModal = (message: string, error?: boolean) => {
+    setShowModal(true);
+    const className = error ? ModalType.ERROR : ModalType.SUCCESS;
+    setModal({ message, className });
+  }
 
   const handleArray = (array: CSVObject[]) => array.map((item) => ({
     code: Number(item.product_code),
@@ -87,12 +105,11 @@ const Main = (): JSX.Element => {
       if (response.status === 200) {
         removeFile();
         setValidProducts(false);
-        window.alert('Produtos atualizados')
+        handleShowModal(ModalMessage.SUCCESS);
       }
-
     } catch (err: unknown) {
       console.error(err);
-      setErrors(err.response.data);
+      handleShowModal(ModalMessage.ERROR, true);
     }
   };
 
@@ -110,6 +127,11 @@ const Main = (): JSX.Element => {
         validProducts={ validProducts }
         errors={ errors }
       />
+      { showModal && modal && <AlertModal
+        message={modal.message}
+        className={modal?.className}
+        onClick={ () => setShowModal(false) }
+      /> }
     </StyledMain>
   );
 };

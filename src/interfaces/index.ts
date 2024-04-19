@@ -26,6 +26,12 @@ export interface ITable {
   error?: UpdateErrorResponse | null;
 }
 
+export interface IAlertModal {
+  message?: string,
+  onClick: () => void,
+  className?: string,
+}
+
 export interface IForm {
   handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void,
   updateProducts: Product[],
