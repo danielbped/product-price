@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { ITable, Product, UpdateError } from "../../interfaces";
-import { StyledTable, StyledTableSection, StyledTableRow, StyledTableHead, StyledTableCell, SuccessMessageField, SuccessMessage, SuccessMessageObs, ErrorMessage } from "./styles";
+import { StyledTable, StyledTableSection, StyledTableRow, StyledTableHead, StyledTableCell, MessageField, SuccessMessage, MessageObs, ErrorMessage } from "./styles";
 
 const Table = (props: ITable): JSX.Element => {
   const errorHeaders = ['Erro', 'Código do produto'];
-  const productHeaders = ['Código', 'Nome', 'Valor', 'Novo valor'];
+  const productHeaders = ['Código', 'Nome', 'Valor', 'Novo valor']
 
   const [items, setItems] = useState<Product[] | UpdateError[]>([]);
 
@@ -20,12 +20,16 @@ const Table = (props: ITable): JSX.Element => {
 
   return (
     <StyledTableSection>
-      {props.error && <ErrorMessage>{ props.error.message }</ErrorMessage>}
+      {props.error &&
+        <MessageField>
+          <ErrorMessage>{ props.error.message }</ErrorMessage>
+          <MessageObs>Verifique os erros abaixo, atualize a lista e tente novamente.</MessageObs>
+      </MessageField>}
       {!props.error && props.products.length > 0 &&
-        <SuccessMessageField>
+        <MessageField>
           <SuccessMessage>Produtos validados com sucesso!</SuccessMessage>
-          <SuccessMessageObs>Verifique os dados abaixo e finalize a atualização clicando no botão "Atualizar Produtos" acima.</SuccessMessageObs>
-        </SuccessMessageField>
+          <MessageObs>Verifique os dados abaixo e finalize a atualização clicando no botão "Atualizar Produtos" acima.</MessageObs>
+        </MessageField>
       }
       { items.length > 0 && <StyledTable>
         <thead>

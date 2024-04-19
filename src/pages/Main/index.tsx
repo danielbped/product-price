@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Form from "../../components/Form";
-import { CSVObject, Product, UpdateError } from "../../interfaces";
+import { CSVObject, Product, UpdateErrorResponse } from "../../interfaces";
 import csvFileToArray from "../../helpers/csvFileToArray";
 import { StyledHeader, StyledMain } from "./styles";
 
@@ -9,7 +9,7 @@ const Main = (): JSX.Element => {
   const [file, setFile] = useState<File | null>(null);
   const [array, setArray] = useState<CSVObject[]>([]);
   const [updateProducts, setUpdateProducts] = useState<Product[]>([]);
-  const [errors, setErrors] = useState<UpdateError | null>(null);
+  const [errors, setErrors] = useState<UpdateErrorResponse | null>(null);
   const [validProducts, setValidProducts] = useState<boolean>(false)
   
   const { VITE_API_URL } = import.meta.env;

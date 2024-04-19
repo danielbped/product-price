@@ -15,6 +15,12 @@ export const StyledFileName = styled.p`
 export const StyledRemoveFileButton = styled.button`
   border: none;
   color: red;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: all.3s ease-in-out;
+  }
 `;
 
 export const StyledFileField = styled.div`

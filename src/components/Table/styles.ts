@@ -23,7 +23,7 @@ export const StyledTableCell = styled.td`
   border: 1px solid black;
 `;
 
-export const SuccessMessageField = styled.div`
+export const MessageField = styled.div`
   text-align: center;
 `;
 
@@ -33,7 +33,7 @@ export const SuccessMessage = styled.p`
   color: #2da77a;
 `;
 
-export const SuccessMessageObs = styled.p`
+export const MessageObs = styled.p`
   margin-bottom: 1rem;
   font-size: .8rem;
   opacity: .5;
