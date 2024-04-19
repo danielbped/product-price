@@ -6,6 +6,7 @@ import csvFileToArray from "../../helpers/csvFileToArray";
 import { StyledHeader, StyledMain } from "./styles";
 import AlertModal from "../../components/AlertModal";
 import { ModalMessage, ModalType } from "../../enums";
+import Loading from "../../components/Loading";
 
 const Main = (): JSX.Element => {
   const [file, setFile] = useState<File | null>(null);
@@ -15,6 +16,7 @@ const Main = (): JSX.Element => {
   const [validProducts, setValidProducts] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modal, setModal] = useState<Partial<IAlertModal> | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   
   const CLOSE_MODAL_TIME = 5000;
 
@@ -50,6 +52,7 @@ const Main = (): JSX.Element => {
   };
 
   const handleShowModal = (message: string, error?: boolean) => {
+    setLoading(false);
     setShowModal(true);
     const className = error ? ModalType.ERROR : ModalType.SUCCESS;
     setModal({ message, className });
@@ -77,6 +80,7 @@ const Main = (): JSX.Element => {
 
   const handleFile = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
 
     const body = {
       products: handleArray(array)
@@ -84,16 +88,20 @@ const Main = (): JSX.Element => {
 
     try {
       const response = await axios.post(`${VITE_API_URL}/product/validate`, body);
+      setLoading(false);
       setUpdateProducts(response.data);
       setValidProducts(true);
     } catch (err: unknown) {
+      setLoading(false);
       console.error(err);
+      handleShowModal(ModalMessage.ERROR_VALIDATE, true);
       setErrors(err.response.data);
     }
   };
 
   const handleUpdateProducts = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
 
     const body = {
       products: handleArray(array)
@@ -127,6 +135,7 @@ const Main = (): JSX.Element => {
         validProducts={ validProducts }
         errors={ errors }
       />
+      { loading && <Loading /> }
       { showModal && modal && <AlertModal
         message={modal.message}
         className={modal?.className}

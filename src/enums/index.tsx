@@ -1,6 +1,7 @@
 export enum ModalMessage {
   ERROR="Houve um erro ao atualizar os produtos.",
-  SUCCESS="Produtos atualizados com sucesso!"
+  SUCCESS="Produtos atualizados com sucesso!",
+  ERROR_VALIDATE="Houve um erro ao validar os produtos."
 }
 
 export enum ModalType {

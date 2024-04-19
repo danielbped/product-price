@@ -32,7 +32,7 @@ const Form = (props: IForm): JSX.Element => {
           && props.file)
           && <Button
           name={ FormButtonName.UPDATE }
-          className={ FormButtonName.UPDATE }
+          className={ FormButtonClassName.UPDATE }
           onClick={(e) => props.handleUpdateProducts(e)}
         /> }
       </div>
