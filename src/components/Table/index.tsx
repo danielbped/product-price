@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ITable, Product, UpdateError } from "../../interfaces";
+import { ITable, ProductToUpdate, UpdateError } from "../../interfaces";
 import { StyledTable, StyledTableSection, StyledTableRow, StyledTableHead, StyledTableCell, MessageField, SuccessMessage, MessageObs, ErrorMessage } from "./styles";
 import { FormMessage, FormMessageObs } from "../../enums";
 
@@ -7,7 +7,7 @@ const Table = (props: ITable): JSX.Element => {
   const errorHeaders = ['Erro', 'Código do produto'];
   const productHeaders = ['Código', 'Nome', 'Valor', 'Novo valor']
 
-  const [items, setItems] = useState<Product[] | UpdateError[]>([]);
+  const [items, setItems] = useState<ProductToUpdate[] | UpdateError[]>([]);
 
   useEffect(() => {
     if (props.error?.errors) {
