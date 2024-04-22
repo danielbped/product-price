@@ -73,7 +73,7 @@ Um arquivo com estas definições já está presente no projeto, o **.env.exampl
 ![Arquivo adicionado para validação](./public/images/add_file.png)
 
 ### Erro ao validar o arquivo
-
+Este tipo de erro pode ser ocasionado por aalgum problema interno do sistema.
 ![Erro ao validar o arquivo](./public/images/validate_error.png)
 
 ### Produtos inválidos
@@ -90,4 +90,4 @@ Um arquivo com estas definições já está presente no projeto, o **.env.exampl
 
 ### Produtos atualizados com sucesso
 
-![Produtos atualizados com sucesso](./public/images/update_success.jpeg)
+![Produtos atualizados com sucesso](./public/images/update_success.png)
