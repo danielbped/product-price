@@ -67,41 +67,41 @@ Um arquivo com estas definições já está presente no projeto, o **.env.exampl
 
 ### Página inicial
 
-![Página inicial](./public/images/initial_page.png)
+![Página inicial](./public/image/initial_page.png)
 
 ### Arquivo adicionado para validação
 
-![Arquivo adicionado para validação](./public/images/add_file.png)
+![Arquivo adicionado para validação](./public/image/add_file.png)
 
 ### Erro ao validar o arquivo
 
 Este tipo de erro pode ser ocasionado por aalgum problema interno do sistema.
-![Erro ao validar o arquivo](./public/images/validate_error.png)
+![Erro ao validar o arquivo](./public/image/validate_error.png)
 
 ### Produtos inválidos
 
-![Produtos inválidos](./public/images/validate_items_error.png)
+![Produtos inválidos](./public/image/validate_items_error.png)
 
 ### Produtos validados com sucesso
 
-![Produtos validados com sucesso](./public/images/validate_success.png)
+![Produtos validados com sucesso](./public/image/validate_success.png)
 
 ### Erro ao atualizar os produtos
 
-![Erro ao atualizar os produtos](./public/images/update_error.png)
+![Erro ao atualizar os produtos](./public/image/update_error.png)
 
 ### Produtos atualizados com sucesso
 
-![Produtos atualizados com sucesso](./public/images/update_success.png)
+![Produtos atualizados com sucesso](./public/image/update_success.png)
 
 ### Página de pacotes
 
-![Página de pacotes](./public/images/packs.png)
+![Página de pacotes](./public/image/packs.png)
 
 ### Página de pacotes, caso não haja nenhum produto listado
 
-![Página de pacotes, caso não haja nenhum produto listado](./public/images/packs_empty_list.png)
+![Página de pacotes, caso não haja nenhum produto listado](./public/image/packs_empty_list.png)
 
 ### Página de pacotes, caso haja algum erro ao buscar os pacotes
 
-![Página de pacotes, caso haja algum erro ao buscar os pacotes](./public/images/get_packs_error.png)
+![Página de pacotes, caso haja algum erro ao buscar os pacotes](./public/image/get_packs_error.png)
