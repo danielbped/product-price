@@ -5,6 +5,41 @@ export interface CSVObject {
 }
 
 export interface Product {
+  code: number
+  name: string
+  sales_price: number
+  cost_price: number
+}
+
+export interface IItemField {
+  value: string | number
+  label: string
+  fullWidth?: boolean
+}
+
+export interface IProductList {
+  data: Product[]
+}
+
+export interface IPackList {
+  data: Pack[]
+}
+
+export interface IProductItem {
+  product: Product
+}
+
+export interface IPackItem {
+  pack: Pack
+}
+
+export interface Pack {
+  product: Product
+  qty: number
+  value: number
+}
+
+export interface ProductToUpdate {
   code: number;
   name: string;
   sales_price: number;
@@ -22,7 +57,7 @@ export interface UpdateErrorResponse {
 }
 
 export interface ITable {
-  products: Product[],
+  products: ProductToUpdate[],
   error?: UpdateErrorResponse | null;
 }
 
@@ -34,7 +69,7 @@ export interface IAlertModal {
 
 export interface IForm {
   handleOnChange: (e: ChangeEvent<HTMLInputElement>) => void,
-  updateProducts: Product[],
+  updateProducts: ProductToUpdate[],
   handleOnSubmit: (e: FormEvent<HTMLButtonElement>) => void,
   handleUpdateProducts: (e: FormEvent<HTMLButtonElement>) => void,
   file: File | null,
