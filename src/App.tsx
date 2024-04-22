@@ -1,8 +1,8 @@
-import Main from "./pages/Main";
+import Routes from './Routes';
 
 function App(): JSX.Element {
   return (
-    <Main />
+    <Routes />
   )
 }
 
