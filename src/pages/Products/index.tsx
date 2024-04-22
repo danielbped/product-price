@@ -1,4 +1,4 @@
-import { StyledHeader, StyledProducts } from "./style";
+import { StyledErrorMessage, StyledHeader, StyledProducts } from "./style";
 import useProductData from "../../hooks/useProductData";
 import Loading from "../../components/Loading";
 import ProductList from "../../components/ProductList";
@@ -11,7 +11,10 @@ const Products = (): JSX.Element => {
       <StyledHeader>Produtos</StyledHeader>
       { isLoading && <Loading /> }
       { !isLoading && data && <ProductList data={ data } /> }
-      { !isError && error && <p>{error.response.data.message}</p> }
+      { !isLoading && isError && error && <StyledErrorMessage>
+        <p>Houve um erro ao buscar os produtos disponíveis.</p>
+        <p>Motivo: {error.message || error.response.data.message}</p>
+      </StyledErrorMessage> }
     </StyledProducts>
   )
 }
