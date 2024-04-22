@@ -13,3 +13,10 @@ export const StyledHeader = styled.h1`
   margin-bottom: 2rem;
   color: #060937;
 `;
+
+export const Obs = styled.p`
+  font-size: .8rem;
+  opacity: .5;
+  width: 70%;
+  text-align: center;
+`;

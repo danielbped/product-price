@@ -3,7 +3,7 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Form from "../../components/Form";
 import { CSVObject, IAlertModal, ProductToUpdate, UpdateErrorResponse } from "../../interfaces";
 import csvFileToArray from "../../helpers/csvFileToArray";
-import { StyledHeader, StyledUpdateProducts } from "./styles";
+import { Obs, StyledHeader, StyledUpdateProducts } from "./styles";
 import AlertModal from "../../components/AlertModal";
 import { ModalMessage, ModalType } from "../../enums";
 import Loading from "../../components/Loading";
@@ -110,7 +110,7 @@ const UpdateProducts = (): JSX.Element => {
     try {
       const response = await axios.put(`${VITE_API_URL}/product`, body);
 
-      if (response.status === 200) {
+      if (response.status === 204) {
         removeFile();
         setValidProducts(false);
         handleShowModal(ModalMessage.SUCCESS);
@@ -141,6 +141,7 @@ const UpdateProducts = (): JSX.Element => {
         className={modal?.className}
         onClick={ () => setShowModal(false) }
       /> }
+      { file || loading || showModal ? null : <Obs>Para atualizar um ou mais produtos, é necessário fornecer um arquivo <b>.csv</b> com duas colunas, <b>product_code</b> (contendo o código do produto) e <b>new_price</b> (contendo o novo valor do produto).</Obs> }
     </StyledUpdateProducts>
   );
 };
