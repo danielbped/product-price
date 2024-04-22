@@ -1,6 +1,6 @@
 # Online Store
 
-Trata-se de uma aplicação utilizada para atualizar o valor de determinados produtos, onde é possível validar as informações enviadas para atualizar os produtos e, caso os dados estejam de acordo com o padrão, atualizar uma listagem de produtos. A aplicação depende da API disponível [aqui](https://github.com/danielbped/product-price-api).
+Trata-se de uma aplicação utilizada para atualizar o valor de determinados produtos, onde é possível validar as informações enviadas para atualizar os produtos e, caso os dados estejam de acordo com o padrão, atualizar uma listagem de produtos. Também é possível visualizar a list ade produtos e pacotes disponíveis. A aplicação depende da API disponível [aqui](https://github.com/danielbped/product-price-api).
 
 # Sumário
 - [Licença](#licenca)
@@ -20,6 +20,7 @@ Este projeto está sob licença do [MIT](https://github.com/danielbped/product-p
 - [**Vite**](https://vitejs.dev/): Um construtor de aplicações web moderno e rápido, desenvolvido principalmente para projetos usando Vue.js, mas também é compatível com outras estruturas como React e Svelte. Ele oferece um ambiente de desenvolvimento extremamente rápido e eficiente, com recarga rápida (hot module replacement) e suporte a módulos ES.
 - [**React Icons**](https://react-icons.github.io/react-icons/): Uma biblioteca que fornece um conjunto de ícones populares para serem usados em aplicações React. Ela simplifica a inclusão de ícones vetoriais em projetos React, oferecendo uma ampla variedade de ícones e estilos prontos para uso.
 - [**React Spinners**](https://www.davidhu.io/react-spinners/): Uma biblioteca React que fornece componentes para exibir indicadores de carregamento (spinners) em aplicações web. Ela oferece uma variedade de estilos e opções de personalização para spinners, facilitando a inclusão de feedback visual de carregamento em interfaces de usuário.
+- [**React Query**](https://tanstack.com/query/latest): Uma biblioteca para gerenciamento de dados em aplicações React. Ela simplifica o gerenciamento de dados assíncronos, como solicitações HTTP, cache de dados e atualizações em tempo real, fornecendo uma API simples e intuitiva para lidar com esses cenários comuns no desenvolvimento de aplicações web.
 
 ## Instruções para rodar o projeto <a name="instrucoes"></a>
 
@@ -73,6 +74,7 @@ Um arquivo com estas definições já está presente no projeto, o **.env.exampl
 ![Arquivo adicionado para validação](./public/images/add_file.png)
 
 ### Erro ao validar o arquivo
+
 Este tipo de erro pode ser ocasionado por aalgum problema interno do sistema.
 ![Erro ao validar o arquivo](./public/images/validate_error.png)
 
@@ -91,3 +93,15 @@ Este tipo de erro pode ser ocasionado por aalgum problema interno do sistema.
 ### Produtos atualizados com sucesso
 
 ![Produtos atualizados com sucesso](./public/images/update_success.png)
+
+### Página de pacotes
+
+![Página de pacotes](./public/images/packs.png)
+
+### Página de pacotes, caso não haja nenhum produto listado
+
+![Página de pacotes, caso não haja nenhum produto listado](./public/images/packs_empty_list.png)
+
+### Página de pacotes, caso haja algum erro ao buscar os pacotes
+
+![Página de pacotes, caso haja algum erro ao buscar os pacotes](./public/images/get_packs_error.png)
