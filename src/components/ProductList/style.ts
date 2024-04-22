@@ -6,3 +6,7 @@ export const StyledProductList = styled.div`
   scrollbar-width: thin;
   width: 90%;
 `;
+
+export const StyledEmptyList = styled.p`
+  text-align: center;
+`;

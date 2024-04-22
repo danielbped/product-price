@@ -6,3 +6,7 @@ export const StyledPackList = styled.div`
   overflow-y: auto;
   scrollbar-width: thin;
 `;
+
+export const StyledEmptyList = styled.p`
+  text-align: center;
+`;
