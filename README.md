@@ -94,13 +94,25 @@ Este tipo de erro pode ser ocasionado por aalgum problema interno do sistema.
 
 ![Produtos atualizados com sucesso](./public/images/update_success.png)
 
+### Página de produtos
+
+![Página de produtos](./public/images/products.png)
+
+### Página de produtos, caso não haja nenhum produto listado
+
+![Página de produtos, caso não haja nenhum produto listado](./public/images/products_empty_list.png)
+
+### Página de produtos, caso haja algum erro ao buscar os produtos
+
+![Página de produtos, caso haja algum erro ao buscar os produtos](./public/images/get_products_error.png)
+
 ### Página de pacotes
 
 ![Página de pacotes](./public/images/packs.png)
 
-### Página de pacotes, caso não haja nenhum produto listado
+### Página de pacotes, caso não haja nenhum pacote listado
 
-![Página de pacotes, caso não haja nenhum produto listado](./public/images/packs_empty_list.png)
+![Página de pacotes, caso não haja nenhum pacote listado](./public/images/packs_empty_list.png)
 
 ### Página de pacotes, caso haja algum erro ao buscar os pacotes
 
